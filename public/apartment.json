@@ -1,0 +1,45 @@
+[
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_apartments1.jpg",
+        "floorNo": 2,
+        "blockName": "A",
+        "apartmentNo": "201",
+        "rent": 1200
+    },
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_apartments2.jpg",
+        "floorNo": 3,
+        "blockName": "B",
+        "apartmentNo": "302",
+        "rent": 1500
+       
+    },
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_apartments3.jpg",
+        "floorNo": 1,
+        "blockName": "C",
+        "apartmentNo": "103",
+        "rent": 1100
+    },
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_investment7.jpg",
+        "floorNo": 5,
+        "blockName": "D",
+        "apartmentNo": "504",
+        "rent": 1700
+    },
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_investment8.jpg",
+        "floorNo": 4,
+        "blockName": "E",
+        "apartmentNo": "405",
+        "rent": 1600
+    },
+    {
+        "apartmentImage": "https://themes.muffingroup.com/be/developer3/wp-content/uploads/2017/11/home_developer3_investment10.jpg",
+        "floorNo": 6,
+        "blockName": "F",
+        "apartmentNo": "606",
+        "rent": 1800
+    }
+]
