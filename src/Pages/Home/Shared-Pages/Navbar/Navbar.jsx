@@ -1,8 +1,7 @@
-// import { Link, NavLink } from "react-router-dom";
+
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../../assets/logo/logo.png";
-// import { useContext } from "react";
-// import { AuthContext } from "../../Auth-Provider/AuthProvider";
+
 
 const Navbar = () => {
   
@@ -16,7 +15,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 w-[100%] m-auto lg:mt-[68px] mt-6 ">
+    <div className="navbar bg-base-100 mt-12 mb-8"> 
       <div className="navbar-start max-sm:w-[74%]">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
