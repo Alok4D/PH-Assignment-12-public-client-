@@ -6,7 +6,7 @@ const Apartment = () => {
     const [apartment, setApartment] = useState([]);
     console.log(apartment);
     useEffect( () => {
-        fetch('apartment.json')
+        fetch('http://localhost:5000/apartmentData')
         .then(res => res.json())
         .then(data => setApartment(data))
     }, [])
