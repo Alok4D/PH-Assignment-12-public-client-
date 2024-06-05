@@ -2,17 +2,19 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import registerPhoto from "../../../src/assets/Login-page-photo/authentication2 1.jpg";
 
 
 const Register = () => {
     
-    const {registerUser, setUser} = useContext(AuthContext);
+    const {registerUser, setUser, updateUserProfile} = useContext(AuthContext);
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -44,14 +46,22 @@ const Register = () => {
 
         registerUser(email, password, name, photo)
         .then(result => {
+            updateUserProfile(name, photo)
+            .then( () => {
+                console.log('User Profile info updated');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User Create Successfully!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            })
             setUser(result.user);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User Create Successfully!",
-                showConfirmButton: false,
-                timer: 1500
-              });
+            navigate('/');
+            // e.target.reset();
+         
+          
         })
         .catch(error => {
             console.error(error);

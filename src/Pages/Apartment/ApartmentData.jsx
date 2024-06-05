@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const ApartmentData = ({data}) => {
     console.log(data);
     const {apartmentImage, floorNo, blockName, apartmentNo, rent} = data;
+
+    const handleAddAgreement =  agreement => {
+      console.log(agreement);
+    }
     return (
         <div>
                <div className="max-w-[350px] space-y-4 rounded-lg bg-white p-6 shadow-lg md:w-[350px] dark:bg-[#18181B]  mb-10">
@@ -18,7 +22,9 @@ const ApartmentData = ({data}) => {
       </div>
       <div className="flex gap-4">
        <Link to="">
-       <button className="rounded-md border border-black px-4 dark:border-white dark:hover:text-slate-800 dark:hover:bg-white  py-2  duration-300 hover:bg-gray-200">Agreement</button>
+       <button
+       onClick={() => handleAddAgreement(data)}
+        className="rounded-md border border-black px-4 dark:border-white dark:hover:text-slate-800 dark:hover:bg-white  py-2  duration-300 hover:bg-gray-200">Agreement</button>
        </Link>
      
         

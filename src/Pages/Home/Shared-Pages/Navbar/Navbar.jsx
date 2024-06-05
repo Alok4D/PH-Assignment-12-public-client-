@@ -1,7 +1,4 @@
-// import { Link, NavLink } from "react-router-dom";
-// import navLogo from "../../assets/Nav-Logo/logo.svg";
-// import { useContext } from "react";
-// import { AuthContext } from "../../Auth-Provider/AuthProvider";
+import { FaBeer, FaShoppingCart } from "react-icons/fa";
 
 
 import { Link, NavLink } from "react-router-dom";
@@ -20,6 +17,14 @@ const Navbar = () => {
       <li className=" rounded-xl ">
         <NavLink to="/apartment">Apartment</NavLink>
       </li>
+      <li>
+        <Link to="/">
+        <button className="btn">
+        <FaShoppingCart className="mr-2"></FaShoppingCart>
+        <div className="badge">+0</div>
+      </button>
+        </Link>
+        </li>
      
     </>
   );
