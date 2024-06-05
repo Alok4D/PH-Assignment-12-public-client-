@@ -8,13 +8,18 @@ import {
 } from "react-router-dom";
 import { router } from './Routes/Router';
 import { HelmetProvider } from 'react-helmet-async';
+import AuthProvider from './Provider/AuthProvider';
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <HelmetProvider>
+  <AuthProvider>
+  <HelmetProvider>
    <div className='w-[80%] mx-auto'>
       <RouterProvider router={router} />
     </div>
    </HelmetProvider>
+  </AuthProvider>
+  <ToastContainer></ToastContainer>
   </React.StrictMode>,
 )

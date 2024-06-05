@@ -1,16 +1,79 @@
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import registerPhoto from "../../../src/assets/Login-page-photo/authentication2 1.jpg";
 
 
 const Register = () => {
+    
+    const {registerUser, setUser} = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const photo = e.target.photo.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const confirmPassword = e.target.confirmPassword.value;
+
+        if(password.length < 6){
+            setError("Password should be at least must be 6 characters")
+            return;
+        }
+        else if(!/[A-Z]/.test(password)){
+            setError('password must contain at least 1 upper case character!')
+            return;
+        }
+        else if(!/[a-z]/.test(password)){
+            setError('password must contain at least 1 lower character!')
+            return;
+        }
+        else if(password !== confirmPassword){
+            setError("Password didn't match")
+            return
+        }
+     
+        setError('');
+        console.log(name, photo, email, password, confirmPassword);
+
+        registerUser(email, password, name, photo)
+        .then(result => {
+            setUser(result.user);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Create Successfully!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        })
+        .catch(error => {
+            console.error(error);
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Already account created!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        })
+        // form.reset();
+    }
+    
     return (
-        <div>
-                 <div  className="w-80 md:w-96 lg:w-[500px] mx-auto mt-8 border rounded-xl bg-white flex items-center relative overflow-hidden shadow-xl mb-8"  >
+        <div className="w-full flex justify-center items-center z-0 p-4 gap-10 flex-col lg:flex-row  shadow rounded-xl mt-24 border-2 border-orange-400">
         <Helmet><title>Create a an Account</title></Helmet>
             {/* register form  */}
-            <div className={`p-8 w-full duration-500` }>
+            <div className="w-full max-w-lg p-4 rounded-md sm:p-8 shadow border dark:bg-gray-50">
                 <h1 className="font-extrabold lg:text-4xl pb-4 flex justify-center items-center">Register Now!</h1>
 
-            <form onSubmit={handleRegister} className="space-y-3">
+            <form onSubmit={handleRegister} className="space-y-3 my-6">
 
            <div>
            <p>Name</p>
@@ -53,7 +116,7 @@ const Register = () => {
             }
 
            <button type="submit" className="btn bg-[#F60] w-full">Register</button>
-           <ToastContainer></ToastContainer>
+         
             </form>
 
 
@@ -62,8 +125,14 @@ const Register = () => {
 
                 
              </div>
-    </div>
+             <div className="">
+          <img
+            src={registerPhoto}
+            className=" "
+            alt=""
+          />
         </div>
+    </div>
     );
 };
 
