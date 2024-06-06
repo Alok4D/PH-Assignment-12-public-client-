@@ -1,13 +1,15 @@
-import { FaBeer, FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../../assets/logo/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = UseAgreementCarts();
 
   const links = (
     <>
@@ -21,7 +23,7 @@ const Navbar = () => {
         <Link to="/">
         <button className="btn">
         <FaShoppingCart className="mr-2"></FaShoppingCart>
-        <div className="badge">+0</div>
+        <div className="badge">+{cart.length}</div>
       </button>
         </Link>
         </li>
