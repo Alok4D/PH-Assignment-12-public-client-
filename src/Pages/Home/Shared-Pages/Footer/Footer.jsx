@@ -2,7 +2,7 @@ import { FaHome } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import { RiMessage2Fill } from "react-icons/ri";
 import { MdOutlineWatchLater } from "react-icons/md";
-import footerLogo from '../../../../assets/logo/logo.png';
+
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer w-[85%] lg:h-[280px] lg:w-[80%] mx-auto ">
           <nav>
             <div className="flex justify-center items-center gap-1">
-              <img src={footerLogo} alt="" className="h-10" />
+              <img src="https://template-kit2.evonicmedia.com/layout76/wp-content/uploads/2024/05/logo-1.png" alt="" className="h-10" />
             </div>
 
             <div className="flex justify-center items-center gap-2 mt-2">

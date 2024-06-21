@@ -2,7 +2,6 @@ import { FaShoppingCart } from "react-icons/fa";
 
 
 import { Link, NavLink } from "react-router-dom";
-import navLogo from "../../../../assets/logo/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
@@ -19,14 +18,14 @@ const Navbar = () => {
       <li className=" rounded-xl ">
         <NavLink to="/apartment">Apartment</NavLink>
       </li>
-      <li>
+     { user && <li>
         <Link to="/">
         <button className="btn">
         <FaShoppingCart className="mr-2"></FaShoppingCart>
         <div className="badge">+{cart.length}</div>
       </button>
         </Link>
-        </li>
+        </li>}
      
     </>
   );
@@ -61,12 +60,12 @@ const Navbar = () => {
         </div>
 
         <div className="flex gap-4 justify-center items-center cursor-pointer">
-          <img src={navLogo} alt="industrial-logo-image" />
+          <img src="https://template-kit2.evonicmedia.com/layout76/wp-content/uploads/2024/05/logo-1.png" alt="industrial-logo-image" className="h-[50px]" />
         </div>
       </div>
 
       <div className="navbar-center hidden  lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
+        <ul className="menu menu-horizontal px-1 gap-3 border justify-center items-center">{links}</ul>
       </div>
       <div className="lg:navbar-end lg:gap-4 gap-2 ">
         {user ? (<>
@@ -88,17 +87,12 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-300 rounded-box w-52"
             >
               <li>
-                <NavLink to="/myListFoods">My added food items</NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink>
               </li>
-              <li>
-                <NavLink to="/foodAddItem">Add a food item</NavLink>
-              </li>
-              <li>
-                <NavLink to="/orderedFood">My ordered food items</NavLink>
-              </li>
+             
             </ul>
             <div></div>
           </div>
