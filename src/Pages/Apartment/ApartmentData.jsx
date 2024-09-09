@@ -21,8 +21,11 @@ const ApartmentData = ({data}) => {
         const cartItem = {
           menuId: _id,
           email: user.email,
+          userName : user.displayName,
           blockName,
-          rent
+          rent,
+          apartmentNo,
+          floorNo
         }
         axiosSecure.post('/agreementCarts', cartItem)
         .then(res => {

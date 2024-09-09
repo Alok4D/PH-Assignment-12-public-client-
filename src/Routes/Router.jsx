@@ -8,10 +8,11 @@ import Error from "../Pages/Error-page/Error";
 import Apartment from "../Pages/Apartment/Apartment";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import DashboardLayout from "../Layout/Dashboard-Layout/DashboardLayout";
+import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import Statistics from "../Pages/Dashboard-pages/Common/Statistics";
 import MyProfile from "../Pages/Dashboard-pages/User-Dashboard/MyProfile";
 import Announcements from "../Pages/Dashboard-pages/User-Dashboard/Announcements";
+
 
   export const router = createBrowserRouter([
     {
@@ -43,16 +44,16 @@ import Announcements from "../Pages/Dashboard-pages/User-Dashboard/Announcements
       children: [
         {
           index: true,
-          element: <Statistics></Statistics>,
+          element: <Statistics></Statistics>
         },
         {
-          path: 'my-profile',
+          path: 'myProfile',
           element: <MyProfile></MyProfile>
         },
         {
-          path: 'announcements',
-          element: <Announcements></Announcements>,
-        }
+          path: 'announcement',
+          element: <Announcements></Announcements>
+        },
       ]
     }
   ]);

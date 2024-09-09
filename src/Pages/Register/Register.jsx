@@ -5,9 +5,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import registerPhoto from "../../../src/assets/Login-page-photo/authentication2 1.jpg";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+
 
 
 const Register = () => {
+
+    const axiosPublic = UseAxiosPublic();
     
     const {registerUser, setUser, updateUserProfile} = useContext(AuthContext);
     const [error, setError] = useState('');
@@ -48,18 +52,31 @@ const Register = () => {
         .then(result => {
             updateUserProfile(name, photo)
             .then( () => {
-                console.log('User Profile info updated');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User Create Successfully!",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+                // console.log('User Profile info updated');
+                // create user entry in the database 
+                const userInfo = {
+                    name : name,
+                    email: email
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    if(res.data.insertedId){
+                        console.log('user added to the database!');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "User Create Successfully!",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          setUser(result.user);
+                          navigate('/');
+                          // e.target.reset();
+                    }
+                })
+
             })
-            setUser(result.user);
-            navigate('/');
-            // e.target.reset();
+
          
           
         })

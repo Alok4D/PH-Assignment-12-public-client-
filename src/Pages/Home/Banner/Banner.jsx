@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 
 export const Banner = () => {
     const [currentSlider, setCurrentSlider] = useState(0);
-    const sliders = [{ img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3RydWN0aW9ufGVufDB8fDB8fHww' },{ img: 'https://lh6.googleusercontent.com/proxy/X4e-NXZNtEURdzQ1bqM3Woj4JAT8lij5rS8xNgmBNyPT9xIRNI9Ew1lzH50ysNphu_ydVgb4ox0r062aeMNnB5XoICc1z9bWVacIdVXlPQ' },{ img: 'https://www.ie.edu/insights/wp-content/uploads/2020/11/VanSchendel-Construction.jpg' },{ img: 'https://cdn.viewpoint.com/blog/2022/08/iStock-1334272873.jpg', title: 'Escape 5', des: 'A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.' }];
+    const sliders = [{img: 'https://png.pngtree.com/background/20230317/original/pngtree-city-%E2%80%8B%E2%80%8Bbuilding-neon-background-picture-image_2149544.jpg'},{ img: 'https://image.khaleejtimes.com/?uuid=251296dd-a9b4-4861-8867-7212595b87a2&function=cropresize&type=preview&source=false&q=75&crop_w=0.99999&crop_h=0.99716&x=0&y=0&width=1200&height=675' },{ img: 'https://lh6.googleusercontent.com/proxy/X4e-NXZNtEURdzQ1bqM3Woj4JAT8lij5rS8xNgmBNyPT9xIRNI9Ew1lzH50ysNphu_ydVgb4ox0r062aeMNnB5XoICc1z9bWVacIdVXlPQ' },{ img: 'https://www.ie.edu/insights/wp-content/uploads/2020/11/VanSchendel-Construction.jpg' },{ img: 'https://cdn.viewpoint.com/blog/2022/08/iStock-1334272873.jpg', title: 'Escape 5', des: 'A Symphony of Tranquility. Experience the perfect blend of relaxation and excitement.' }];
     // if you don't want to change the slider automatically then you can just remove the useEffect
     useEffect(() => {
-        const intervalId = setInterval(() => setCurrentSlider(currentSlider === sliders.length - 1 ? 0 : currentSlider + 1), 5000);
+        const intervalId = setInterval(() => setCurrentSlider(currentSlider === sliders.length - 1 ? 0 : currentSlider + 1), 2000);
         return () => clearInterval(intervalId);
     }, [currentSlider]);
 
     return (
         <div className="flex flex-col justify-between">
-            <div className="w-full h-72 sm:h-96 md:h-[780px] flex flex-col items-center justify-center gap-5 lg:gap-10 bg-cover bg-center before:absolute before:bg-black/25 before:inset-0 transform duration-1000 ease-linear rounded-lg overflow-hidden"
+            <div className="w-full h-72 sm:h-96 md:h-[700px] flex flex-col items-center justify-center gap-5 lg:gap-10 bg-cover bg-center before:absolute before:bg-black/25 before:inset-0 transform duration-1000 ease-linear rounded-lg overflow-hidden"
                 style={{ backgroundImage: `url(${sliders[currentSlider].img})`}}>
                 {/* text container here */}
                 <div className="drop-shadow-lg text-white px-5">

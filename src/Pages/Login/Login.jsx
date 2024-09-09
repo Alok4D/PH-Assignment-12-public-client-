@@ -3,8 +3,12 @@ import loginPhoto from "../../../src/assets/Login-page-photo/authentication2 1.j
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 
 const Login = () => {
+
+  const axiosPublic = UseAxiosPublic();
+
 
   const {loginUser, googleLogin, setUser} = useContext(AuthContext);
   const location = useLocation();
@@ -46,6 +50,17 @@ const Login = () => {
     googleLogin()
     .then(result =>{
       setUser(result.user);
+
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(res => {
+        console.log(res.data);
+        Navigate('/');
+      })
+
       Swal.fire({
         position: "top-end",
         icon: "success",
