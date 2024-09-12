@@ -25,7 +25,9 @@ const ApartmentData = ({data}) => {
           blockName,
           rent,
           apartmentNo,
-          floorNo
+          floorNo,
+          status : 'pending',
+          agreementReqDate: new Date()
         }
         axiosSecure.post('/agreementCarts', cartItem)
         .then(res => {

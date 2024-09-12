@@ -6,9 +6,13 @@ import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { TfiAnnouncement } from "react-icons/tfi";
+
 import { FaHome } from "react-icons/fa";
+import useGetRoles from "../../../hooks/UseGetRoles";
 
 const Sidebar = () => {
+  const {role} = useGetRoles();
+  console.log(role);
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
   const [isActive, setActive] = useState(false);
@@ -55,7 +59,7 @@ const Sidebar = () => {
               <Link to="/">
                 <img
                   // className='hidden md:block'
-                  src="https://i.ibb.co/4ZXzmq5/logo.png"
+                  src="https://template-kit2.evonicmedia.com/layout76/wp-content/uploads/2024/05/logo-1.png"
                   alt="logo"
                   width="100"
                   height="100"
@@ -84,7 +88,10 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Dashboard</span>
               </NavLink>
-
+                {
+                  role === "user" ? 
+                  <>
+                  
               {/* My Profile */}
               <NavLink
                 to="myProfile"
@@ -113,6 +120,17 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Announcement</span>
               </NavLink>
+                  </>
+                  : role === "member" ? 
+                  <>
+                  {/* routes for member */}
+                  </>
+                  : role === "admin" ? 
+                  <>
+                  {/* routes for admin */}
+                  </>
+                  : null
+                }
             </nav>
           </div>
         </div>
