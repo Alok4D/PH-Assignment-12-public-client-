@@ -2,13 +2,16 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
-import { FcSettings } from "react-icons/fc";
+import { FcNews, FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { TfiAnnouncement } from "react-icons/tfi";
 
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaNewspaper } from "react-icons/fa";
 import useGetRoles from "../../../hooks/UseGetRoles";
+import { BsPersonFillAdd } from "react-icons/bs";
+import { VscGitPullRequestCreate } from "react-icons/vsc";
+import { RiCoupon3Fill } from "react-icons/ri";
 
 const Sidebar = () => {
   const {role} = useGetRoles();
@@ -88,6 +91,7 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Dashboard</span>
               </NavLink>
+
                 {
                   role === "user" ? 
                   <>
@@ -128,6 +132,72 @@ const Sidebar = () => {
                   : role === "admin" ? 
                   <>
                   {/* routes for admin */}
+                  <NavLink
+                to="adminProfile"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             
+                <CgProfile className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Profile</span>
+                  </NavLink>
+                  <NavLink
+                to="manageMembers"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             <BsPersonFillAdd className="w-5 h-5" />
+              
+
+                <span className="mx-4 font-medium">Manage Member</span>
+                  </NavLink>
+                  <NavLink
+                to="makeAnnouncement"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             
+                <FcNews className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Make Announcement</span>
+                  </NavLink>
+                  <NavLink
+                to="agreementReq"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             <VscGitPullRequestCreate className="w-5 h-5" />
+               
+
+                <span className="mx-4 font-medium">Agreement Request</span>
+                  </NavLink>
+                  <NavLink
+                to="manageCoupons"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             <RiCoupon3Fill  className="w-5 h-5" />
+               
+
+                <span className="mx-4 font-medium">Manage Coupons</span>
+                  </NavLink>
+                  
                   </>
                   : null
                 }

@@ -12,6 +12,11 @@ import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import Statistics from "../Pages/Dashboard-pages/Common/Statistics";
 import MyProfile from "../Pages/Dashboard-pages/User-Dashboard/MyProfile";
 import Announcements from "../Pages/Dashboard-pages/User-Dashboard/Announcements";
+import AdminProfile from "../Pages/Dashboard-pages/Admin/AdminProfile";
+import ManageMembers from "../Pages/Dashboard-pages/Admin/ManageMembers";
+import MakeAnnouncement from "../Pages/Dashboard-pages/Admin/MakeAnnouncement";
+import AgreementRequest from "../Pages/Dashboard-pages/Admin/AgreementRequest";
+import ManageCoupons from "../Pages/Dashboard-pages/Admin/ManageCoupons";
 
 
   export const router = createBrowserRouter([
@@ -54,6 +59,27 @@ import Announcements from "../Pages/Dashboard-pages/User-Dashboard/Announcements
           path: 'announcement',
           element: <Announcements></Announcements>
         },
+        // admin dashboard 
+        {
+          path: 'adminProfile',
+          element: <AdminProfile></AdminProfile>
+        },
+        {
+          path: 'manageMembers',
+          element: <ManageMembers></ManageMembers>
+        },
+        {
+          path: 'makeAnnouncement',
+          element: <MakeAnnouncement></MakeAnnouncement>
+        },
+        {
+          path: 'agreementReq',
+          element: <AgreementRequest></AgreementRequest>
+        },
+        {
+          path: 'manageCoupons',
+          element: <ManageCoupons></ManageCoupons>
+        }
       ]
     }
   ]);

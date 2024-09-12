@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import useGetRoles from "../../../hooks/UseGetRoles";
 
 
-const MyProfile = () => {
+const AdminProfile = () => {
+    const {role} = useGetRoles();
+    console.log(role);
     const {user} = useContext(AuthContext);
     console.log(user);
     return (
@@ -17,18 +20,19 @@ const MyProfile = () => {
                 <div className="space-y-1">
                     <h2 className="text-center text-2xl font-medium text-gray-700 dark:text-white/90 lg:text-3xl">{user?.displayName}</h2> <br />
                     <p className="text-gray-500 dark:text-white/70">Email : {user?.email}</p>
+                    <p className="">Role : {role}</p>
                 </div>
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="space-y-1">
-                        <p className="text-sm text-gray-500 dark:text-white/70">Shots</p>
+                        <p className="text-sm text-gray-500 dark:text-white/70">Total Rooms</p>
                         <p className="text-2xl tracking-wider text-gray-700 dark:text-white/80 lg:text-3xl">23</p>
                     </div>
                     <div className="space-y-1">
-                        <p className="text-sm text-gray-500 dark:text-white/70">Following</p>
+                        <p className="text-sm text-gray-500 dark:text-white/70">Total Users</p>
                         <p className="text-2xl tracking-wider text-gray-700 dark:text-white/80 lg:text-3xl">314</p>
                     </div>
                     <div className="space-y-1">
-                        <p className="text-sm text-gray-500 dark:text-white/70">Followers</p>
+                        <p className="text-sm text-gray-500 dark:text-white/70">Total Members</p>
                         <p className="text-2xl tracking-wider text-gray-700 dark:text-white/80 lg:text-3xl">487</p>
                     </div>
                 </div>
@@ -40,4 +44,4 @@ const MyProfile = () => {
      );
 };
 
-export default MyProfile;
+export default AdminProfile;
