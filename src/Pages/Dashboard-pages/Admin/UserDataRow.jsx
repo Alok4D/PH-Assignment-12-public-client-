@@ -6,9 +6,8 @@ import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 
 import { toast } from 'react-toastify';
 const UserDataRow = ({ user, refetch }) => {
-  console.log(user);
+  // console.log(user);
   const [ isOpen, setIsOpen ] = useState(false);
-
   const axiosSecure = UseAxiosSecure();
 
   const {mutateAsync} = useMutation ({
