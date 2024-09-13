@@ -2,14 +2,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
-import { FcNews, FcSettings } from "react-icons/fc";
+import { FcAbout, FcNews, FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { TfiAnnouncement } from "react-icons/tfi";
 
-import { FaHome, FaNewspaper } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import useGetRoles from "../../../hooks/UseGetRoles";
-import { BsPersonFillAdd } from "react-icons/bs";
+import { BsPaypal, BsPersonFillAdd } from "react-icons/bs";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
 import { RiCoupon3Fill } from "react-icons/ri";
 
@@ -125,9 +125,56 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Announcement</span>
               </NavLink>
                   </>
-                  : role === "member" ? 
+                  : role === "Member" ? 
                   <>
                   {/* routes for member */}
+                  <NavLink
+                to="memberProfile"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <CgProfile className="w-5 h-5" />
+                <span className="mx-4 font-medium">Profile</span>
+                  </NavLink>
+                  <NavLink
+                to="payment"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+             <BsPaypal className="w-5 h-5" />
+                <span className="mx-4 font-medium">Make payment</span>
+                  </NavLink>
+                  <NavLink
+                to="paymentHistory"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <FcAbout className="w-5 h-5" />
+                <span className="mx-4 font-medium">Payment History</span>
+                  </NavLink>
+                  <NavLink
+                to="announcement"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+              
+                <TfiAnnouncement className="w-5 h-5" />
+
+                <span className="mx-4 font-medium">Announcement</span>
+                 </NavLink>
+                  {/* routes for member End */}
                   </>
                   : role === "admin" ? 
                   <>
