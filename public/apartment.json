@@ -41,5 +41,34 @@
         "blockName": "F",
         "apartmentNo": "606",
         "rent": 1800
+    },
+    {
+        "apartmentImage": "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
+        "floorNo": 7,
+        "blockName": "G",
+        "apartmentNo": "706",
+        "rent": 1900
+    },
+    {
+        "apartmentImage": "https://realty.com.cy/images/estates/api-rlt_apartment_rent_J4505_15.webp",
+        "floorNo": 8,
+        "blockName": "H",
+        "apartmentNo": "006",
+        "rent": 9400
+    },
+    {
+        "apartmentImage": "https://media-feed.resales-online.com/live/ShowFeedImage.asp?SecId=ece05742b91d11eeb0180217bc231ef4&Id=P1&ImgId=X1025608&z=1705928507",
+        "floorNo": 9,
+        "blockName": "I",
+        "apartmentNo": "001",
+        "rent": 100
+    },
+    {
+        "apartmentImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPq7FrOreFusdQxQsjO39xUJm5RQg4CFpkA&s",
+        "floorNo": 10,
+        "blockName": "J",
+        "apartmentNo": "002",
+        "rent": 200
     }
 ]
+

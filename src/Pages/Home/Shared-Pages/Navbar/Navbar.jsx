@@ -2,11 +2,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
+import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
+// import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = UseAgreementCarts();
+  
+  // const [cart] = UseAgreementCarts();
+  const [viewCart] = useViewAgreementCart();
 
   const links = (
     <>
@@ -16,12 +19,13 @@ const Navbar = () => {
       <li className=" rounded-xl ">
         <NavLink to="/apartment">Apartment</NavLink>
       </li>
+      
       {user && (
         <li>
-          <Link to="/">
+          <Link to="/dashboard/Payment">
             <button className="btn">
               <FaShoppingCart className="mr-2"></FaShoppingCart>
-              <div className="badge">+{cart.length}</div>
+              <div className="badge">+{viewCart.length}</div>
             </button>
           </Link>
         </li>

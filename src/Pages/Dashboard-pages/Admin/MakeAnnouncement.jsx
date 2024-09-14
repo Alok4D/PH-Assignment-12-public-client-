@@ -10,6 +10,7 @@ const MakeAnnouncement = () => {
     const title = e.target.title.value;
     const description = e.target.description.value;
     console.log(title, description);
+    
     const newAnnouncement = {
       title,
       description,

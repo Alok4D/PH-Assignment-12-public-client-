@@ -17,8 +17,16 @@ import ManageMembers from "../Pages/Dashboard-pages/Admin/ManageMembers";
 import MakeAnnouncement from "../Pages/Dashboard-pages/Admin/MakeAnnouncement";
 import AgreementRequest from "../Pages/Dashboard-pages/Admin/AgreementRequest";
 import ManageCoupons from "../Pages/Dashboard-pages/Admin/ManageCoupons";
-import Payment from "../Pages/Dashboard-pages/Member/Paymemt/Payment";
 import PaymentHistory from "../Pages/Dashboard-pages/Member/Payment-History/PaymentHistory";
+import MemberProfile from "../Pages/Dashboard-pages/Member/Member-Profile/MemberProfile";
+import ViewAgreementDetails from "../Pages/Apartment/VeiwDetailsAgreement/ViewAgreementDetails";
+import Payment from "../Pages/Dashboard-pages/Member/Paymemt/Payment";
+import PayPayment from "../Pages/Dashboard-pages/Member/Paymemt/PayPayment";
+
+
+
+
+
 
 
   export const router = createBrowserRouter([
@@ -34,6 +42,10 @@ import PaymentHistory from "../Pages/Dashboard-pages/Member/Payment-History/Paym
         {
           path: '/apartment',
           element: <Apartment></Apartment>,
+        },
+        {
+          path: '/agreementDetails/:id',
+          element: <ViewAgreementDetails></ViewAgreementDetails>,
         },
         {
           path: '/login',
@@ -65,11 +77,15 @@ import PaymentHistory from "../Pages/Dashboard-pages/Member/Payment-History/Paym
         // member dashboard
         {
           path: 'memberProfile',
-          element: <MyProfile></MyProfile>
+          element: <MemberProfile></MemberProfile>
         },
         {
           path: 'payment',
           element: <Payment></Payment>
+        },
+        {
+          path: 'payPayment',
+          element: <PayPayment></PayPayment>
         },
         {
           path: 'paymentHistory',

@@ -6,14 +6,15 @@ import { FcAbout, FcNews, FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { TfiAnnouncement } from "react-icons/tfi";
-
 import { FaHome } from "react-icons/fa";
 import useGetRoles from "../../../hooks/UseGetRoles";
 import { BsPaypal, BsPersonFillAdd } from "react-icons/bs";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
 import { RiCoupon3Fill } from "react-icons/ri";
+import UseAgreementCarts from "../../../hooks/UseAgreementCarts";
 
 const Sidebar = () => {
+  const [cart] = UseAgreementCarts();
   const {role} = useGetRoles();
   console.log(role);
   const { user, logOut } = useContext(AuthContext);
@@ -139,6 +140,7 @@ const Sidebar = () => {
                 <CgProfile className="w-5 h-5" />
                 <span className="mx-4 font-medium">Profile</span>
                   </NavLink>
+
                   <NavLink
                 to="payment"
                 className={({ isActive }) =>
@@ -150,6 +152,7 @@ const Sidebar = () => {
              <BsPaypal className="w-5 h-5" />
                 <span className="mx-4 font-medium">Make payment</span>
                   </NavLink>
+                  
                   <NavLink
                 to="paymentHistory"
                 className={({ isActive }) =>
@@ -229,7 +232,7 @@ const Sidebar = () => {
              <VscGitPullRequestCreate className="w-5 h-5" />
                
 
-                <span className="mx-4 font-medium">Agreement Request</span>
+                <span className="mx-4 font-medium">Agreement Request ({cart.length})</span>
                   </NavLink>
                   <NavLink
                 to="manageCoupons"
