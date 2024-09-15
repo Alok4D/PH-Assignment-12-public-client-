@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,9 +16,10 @@ const Announcements = () => {
 //   console.log(announcement);
   return (
     <div>
+      <Helmet><title>Announcements Page</title></Helmet>
       <h2 className="text-red-500 text-5xl text-center">Announcements !!!</h2>{" "}
       <br />
-      <div className="divider divider-success">Success</div>
+      <div className="divider divider-success"></div>
       <div>
         {announcement.map((data) => (
           <>
