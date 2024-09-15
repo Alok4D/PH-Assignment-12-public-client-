@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
 import { FcAbout, FcNews, FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
@@ -14,12 +14,17 @@ import { RiCoupon3Fill } from "react-icons/ri";
 import UseAgreementCarts from "../../../hooks/UseAgreementCarts";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [cart] = UseAgreementCarts();
-  const {role} = useGetRoles();
-  console.log(role);
+  const { role } = useGetRoles();
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
   const [isActive, setActive] = useState(false);
+
+  const handleLogOut = () => {
+    navigate("/login", { state: { from: location } });
+    return;
+  };
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -93,164 +98,176 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Dashboard</span>
               </NavLink>
 
-                {
-                  role === "user" ? 
-                  <>
-                  
-              {/* My Profile */}
-              <NavLink
-                to="myProfile"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             
-                <CgProfile className="w-5 h-5" />
+              {role === "user" ? (
+                <>
+                  {/* My Profile */}
+                  <NavLink
+                    to="myProfile"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <CgProfile className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Profile</span>
-              </NavLink>
-              {/* My announcement */}
-              <NavLink
-                to="announcement"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-              
-                <TfiAnnouncement className="w-5 h-5" />
+                    <span className="mx-4 font-medium">Profile</span>
+                  </NavLink>
+                  {/* My announcement */}
+                  <NavLink
+                    to="announcement"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <TfiAnnouncement className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Announcement</span>
-              </NavLink>
-                  </>
-                  : role === "Member" ? 
-                  <>
+                    <span className="mx-4 font-medium">Announcement</span>
+                  </NavLink>
+                </>
+              ) : role === "Member" ? (
+                <>
                   {/* routes for member */}
                   <NavLink
-                to="memberProfile"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <CgProfile className="w-5 h-5" />
-                <span className="mx-4 font-medium">Profile</span>
+                    to="memberProfile"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <CgProfile className="w-5 h-5" />
+                    <span className="mx-4 font-medium">Profile</span>
                   </NavLink>
 
                   <NavLink
-                to="payment"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             <BsPaypal className="w-5 h-5" />
-                <span className="mx-4 font-medium">Make payment</span>
+                    to="payment"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsPaypal className="w-5 h-5" />
+                    <span className="mx-4 font-medium">Make payment</span>
                   </NavLink>
-                  
-                  <NavLink
-                to="paymentHistory"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <FcAbout className="w-5 h-5" />
-                <span className="mx-4 font-medium">Payment History</span>
-                  </NavLink>
-                  <NavLink
-                to="announcement"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-              
-                <TfiAnnouncement className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Announcement</span>
-                 </NavLink>
+                  <NavLink
+                    to="paymentHistory"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FcAbout className="w-5 h-5" />
+                    <span className="mx-4 font-medium">Payment History</span>
+                  </NavLink>
+                  <NavLink
+                    to="announcement"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <TfiAnnouncement className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Announcement</span>
+                  </NavLink>
                   {/* routes for member End */}
-                  </>
-                  : role === "Admin" ? 
-                  <>
+                </>
+              ) : role === "Admin" ? (
+                <>
                   {/* routes for admin */}
                   <NavLink
-                to="adminProfile"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             
-                <CgProfile className="w-5 h-5" />
+                    to="adminProfile"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <CgProfile className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Profile</span>
+                    <span className="mx-4 font-medium">Profile</span>
                   </NavLink>
                   <NavLink
-                to="manageMembers"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             <BsPersonFillAdd className="w-5 h-5" />
-              
+                    to="manageMembers"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsPersonFillAdd className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Manage Member</span>
+                    <span className="mx-4 font-medium">Manage Member</span>
                   </NavLink>
                   <NavLink
-                to="makeAnnouncement"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             
-                <FcNews className="w-5 h-5" />
+                    to="makeAnnouncement"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <FcNews className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Make Announcement</span>
+                    <span className="mx-4 font-medium">Make Announcement</span>
                   </NavLink>
                   <NavLink
-                to="agreementReq"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             <VscGitPullRequestCreate className="w-5 h-5" />
-               
+                    to="agreementReq"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <VscGitPullRequestCreate className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Agreement Request ({cart.length})</span>
+                    <span className="mx-4 font-medium">
+                      Agreement Request ({cart.length})
+                    </span>
                   </NavLink>
                   <NavLink
-                to="manageCoupons"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-             <RiCoupon3Fill  className="w-5 h-5" />
-               
+                    to="manageCoupons"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive
+                          ? "bg-gray-300  text-gray-700"
+                          : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <RiCoupon3Fill className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Manage Coupons</span>
+                    <span className="mx-4 font-medium">Manage Coupons</span>
                   </NavLink>
-                  
-                  </>
-                  : null
-                }
+                </>
+              ) : null}
             </nav>
           </div>
         </div>
@@ -259,7 +276,7 @@ const Sidebar = () => {
           <hr />
 
           {/* Profile Menu */}
-          <NavLink
+          {/* <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -270,9 +287,9 @@ const Sidebar = () => {
             <FcSettings className="w-5 h-5" />
 
             <span className="mx-4 font-medium">Profile</span>
-          </NavLink>
+          </NavLink> */}
           <button
-            onClick={logOut}
+            onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />
