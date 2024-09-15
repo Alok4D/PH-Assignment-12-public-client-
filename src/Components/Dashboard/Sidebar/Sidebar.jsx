@@ -179,7 +179,7 @@ const Sidebar = () => {
                  </NavLink>
                   {/* routes for member End */}
                   </>
-                  : role === "admin" ? 
+                  : role === "Admin" ? 
                   <>
                   {/* routes for admin */}
                   <NavLink
