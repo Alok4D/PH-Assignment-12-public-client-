@@ -4,13 +4,14 @@ import { TiTick } from "react-icons/ti";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 
 const AgreementRequest = () => {
 
   const axiosSecure = UseAxiosSecure();
   const [cart] = UseAgreementCarts();
-  console.log(cart);
+
 
   // fetch all users data from db
   const { data: agreementCarts = [], refetch } = useQuery({
@@ -21,12 +22,13 @@ const AgreementRequest = () => {
     },
   });
   console.log(agreementCarts);
+
   // delete items
 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Your Agreement Request!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -39,7 +41,7 @@ const AgreementRequest = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your agreement request has been deleted.",
               icon: "success",
             });
             refetch();
@@ -82,6 +84,14 @@ const AgreementRequest = () => {
 
   return (
     <div>
+              <Helmet>
+          <title >Dashboard || Agreement Request</title>
+         
+        </Helmet>
+        <div>
+          <h2 className='text-center text-3xl text-yellow-500'>All user agreement request!</h2> 
+          <div className="divider divider-success ml-72 mr-72"></div>
+        </div>
       <div className="mb-5">
         <h2 className="text-6xl">
           Agreement Request : {agreementCarts.length}
@@ -92,20 +102,21 @@ const AgreementRequest = () => {
           {/* head */}
           <thead>
             <tr>
-              <th># </th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Floor no</th>
-              <th>Block Name</th>
-              <th>Room No</th>
-              <th>Rent</th>
-              <th>Agreement request date</th>
-              <th>Accept button</th>
-              <th>Reject button</th>
+              <th className="text-[18px]"># </th>
+              <th className="text-[18px]">Name</th>
+              <th className="text-[18px]">Email</th>
+              <th className="text-[18px]">Floor no</th>
+              <th className="text-[18px]">Block Name</th>
+              <th className="text-[18px]">Room No</th>
+              <th className="text-[18px]">Rent</th>
+              <th className="text-[18px]">Agreement request date</th>
+              <th className="text-[18px]">Accept button</th>
+              <th className="text-[18px]">Reject button</th>
             </tr>
           </thead>
           <tbody>
             {agreementCarts.map((item, index) => (
+              // console.log(item);
               <tr key={item._id}>
                 <th>{index + 1}</th>
                 <td>{item.userName}</td>
@@ -114,7 +125,7 @@ const AgreementRequest = () => {
                 <td>{item.blockName}</td>
                 <td>{item.apartmentNo}</td>
                 <td>${item.rent}</td>
-                <td>{item.agreementReqDate}</td>
+                <td>{new Date(item.agreementReqDate).toLocaleString()}</td>
                 <th>
                 {
                   item.status === 'checked'? 

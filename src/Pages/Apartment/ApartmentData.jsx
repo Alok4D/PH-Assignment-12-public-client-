@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import UseAgreementCarts from "../../hooks/UseAgreementCarts";
+import useGetRoles from "../../hooks/UseGetRoles";
 
 const ApartmentData = ({ data }) => {
-  // console.log(data);
+  const { role } = useGetRoles();
   const { apartmentImage, floorNo, blockName, apartmentNo, rent, _id } = data;
 
   const { user } = useContext(AuthContext);
@@ -15,34 +16,7 @@ const ApartmentData = ({ data }) => {
   const axiosSecure = UseAxiosSecure();
   const [, refetch] = UseAgreementCarts();
   const handleAddAgreement = () => {
-    if (user && user.email) {
-      //send cart item to the database
-      const cartItem = {
-        menuId: _id,
-        email: user.email,
-        userName: user.displayName,
-        blockName,
-        rent,
-        apartmentNo,
-        floorNo,
-        status: "pending",
-        agreementReqDate: new Date(),
-      };
-      axiosSecure.post("/agreementCarts", cartItem).then((res) => {
-        console.log(res.data);
-        if (res.data.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${blockName} block added to your cart`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          // refetch cart to update the cart item count
-          refetch();
-        }
-      });
-    } else {
+    if(!user){
       Swal.fire({
         title: "You are not Logged In",
         text: "Please login to add to the card?",
@@ -55,8 +29,45 @@ const ApartmentData = ({ data }) => {
         if (result.isConfirmed) {
           // send the user to the login page
           navigate("/login", { state: { from: location } });
+          return
         }
       });
+      
+    }
+    if (user && user.email) {
+      if (role === "Member" || role === "admin") {
+        navigate(`/agreementDetails/${_id}`);
+        return;
+      }
+      if (role === "user") {
+        const cartItem = {
+          menuId: _id,
+          email: user.email,
+          userName: user.displayName,
+          blockName,
+          rent,
+          apartmentNo,
+          floorNo,
+          status: "pending",
+          agreementReqDate: new Date(),
+        };
+        axiosSecure.post("/agreementCarts", cartItem).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your agreement request successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // refetch cart to update the cart item count
+            refetch();
+          }
+        });
+      }
+ 
+      return;
     }
   };
 
@@ -81,13 +92,12 @@ const ApartmentData = ({ data }) => {
           </div>
         </div>
         <div className="flex gap-4">
-          <Link to={`/agreementDetails/${_id}`}>
-            <button
-              onClick={handleAddAgreement}
-              className="rounded-md border border-black px-4 dark:border-white dark:hover:text-slate-800 dark:hover:bg-white  py-2  duration-300 hover:bg-gray-200">
-              Agreement
-            </button>
-          </Link>
+          <button
+            onClick={handleAddAgreement}
+            className="rounded-md border border-black px-4 dark:border-white dark:hover:text-slate-800 dark:hover:bg-white  py-2  duration-300 hover:bg-gray-200"
+          >
+            Agreement
+          </button>
         </div>
       </div>
     </div>

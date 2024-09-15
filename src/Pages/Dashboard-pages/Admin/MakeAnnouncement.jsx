@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import './AnnouncementForm.css';
+import { Helmet } from "react-helmet-async";
 
 const MakeAnnouncement = () => {
   const axiosSecure = UseAxiosSecure();
@@ -34,6 +35,11 @@ const MakeAnnouncement = () => {
 
   return (
     <div>
+     <div>
+      <Helmet><title>Dashboard || Create Announcement Page</title></Helmet>
+     <h2 className="text-center text-blue-400 text-4xl">Please create a new Announcement!</h2>
+     <div className="divider divider-success"></div>
+     </div>
       <div className="w-full flex justify-center items-center z-0 p-4 gap-10 flex-col lg:flex-row  shadow  mx-auto  dark:bg-gray-50 dark:text-gray-800">
         <div className="w-full max-w-md p-4 rounded-md sm:p-8 shadow border dark:bg-gray-50">
           <form onSubmit={handleLogin} className="space-y-8">

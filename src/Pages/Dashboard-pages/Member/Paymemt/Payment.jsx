@@ -3,6 +3,7 @@ import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Payment = () => {
 
@@ -11,30 +12,35 @@ const Payment = () => {
   const totalPrice = viewCart.reduce((total, item) => total + item.rent, 0);
 
 
-  const handleViewAgreeDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.delete(`/agreementView${id}`)
-        .then((res) => {
-          if (res.itemData.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your agreement deleted!",
-              icon: "success",
-            });
-          }
-        });
+  const handleViewAgreeDelete = async (id) => {
+    // Swal.fire({
+    //   title: "Are you sure?",
+    //   text: "You won't be able to revert this!",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes, delete it!",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     axiosSecure.delete(`/agreementView${id}`)
+    //     .then((res) => {
+    //       if (res.itemData.deletedCount > 0) {
+    //         refetch();
+    //         Swal.fire({
+    //           title: "Deleted!",
+    //           text: "Your agreement deleted!",
+    //           icon: "success",
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+    const response = await axiosSecure.delete(`/agreementView/${id}`)
+      if(response.data?.acknowledged){
+        toast.success('Agreement Deleted!');
+        refetch();
       }
-    });
   };
 
   return (
@@ -76,8 +82,7 @@ const Payment = () => {
                   <th>
                     <button
                       onClick={() => handleViewAgreeDelete(itemData._id)}
-                      className="btn btn-ghost btn-xs"
-                    >
+                      className="btn btn-ghost btn-xs">
                       <FaTrashAlt className="text-red-600"></FaTrashAlt>
                     </button>
                   </th>

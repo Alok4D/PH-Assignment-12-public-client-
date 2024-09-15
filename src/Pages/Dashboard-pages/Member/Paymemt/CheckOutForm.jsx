@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import toast from "react-hot-toast";
+
 
 const CheckOutForm = () => {
     const [clientSecret, setClientSecret] = useState('');
@@ -69,11 +71,20 @@ const CheckOutForm = () => {
             setTransactionId(paymentIntent.id);
 
             // now save the payment in the db
-            // const payment = {
-            //     email: user.email,
-            //     price: totalPrice,
-            //     dateRent: viewCart.date,
-            // }
+            const payment = {
+                email: user.email,
+                price: totalPrice,
+                transactionId: paymentIntent.id,
+                date: viewCart.date,
+                payment: 'paid'
+               
+            }
+          const res = await  axiosSecure.post('/payments', payment);
+          console.log('payment saved', res);
+          if(res.data?.insertedId){
+            toast.success('Payment Successfully!')
+          
+          }
         }
     }
 

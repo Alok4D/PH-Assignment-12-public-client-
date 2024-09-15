@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
@@ -86,6 +87,7 @@ const Login = () => {
 
   return (
     <div className="border-2 border-orange-300 rounded-xl mt-36">
+      <Helmet><title>Login Page</title></Helmet>
       <div className="w-full flex justify-center items-center z-0 p-4 gap-10 flex-col lg:flex-row  shadow  mx-auto  dark:bg-gray-50 dark:text-gray-800">
         <div className="">
           <img

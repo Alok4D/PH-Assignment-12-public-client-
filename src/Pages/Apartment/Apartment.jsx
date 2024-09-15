@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Helmet } from "react-helmet-async";
 
 const Apartment = () => {
   // pagination
@@ -17,12 +18,13 @@ const Apartment = () => {
   const [apartment, setApartment] = useState([]);
   console.log(apartment);
   useEffect(() => {
-    fetch("http://localhost:5000/apartmentData")
+    fetch("https://building-management-server-sigma.vercel.app/apartmentData")
       .then((res) => res.json())
       .then((data) => setApartment(data));
   }, []);
   return (
     <div>
+      <Helmet><title>Apartment Page</title></Helmet>
       <div className="mt-10 mb-10 w-full h-[310px]  bg-cover  bg-[url('https://images.pexels.com/photos/258160/pexels-photo-258160.jpeg?cs=srgb&dl=pexels-pixabay-258160.jpg&fm=jpg')]">
         <h2 className="flex justify-center items-center text-[60px] leading-[60px] font-bold text-[#ffffff] pt-28">
           Our apartments are available

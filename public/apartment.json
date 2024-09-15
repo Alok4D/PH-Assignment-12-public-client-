@@ -69,6 +69,20 @@
         "blockName": "J",
         "apartmentNo": "002",
         "rent": 200
+    },
+    {
+        "apartmentImage": "https://www.ubm-development.com/magazin/wp-content/uploads/2020/03/kl-main-building-d-Kopie.jpg",
+        "floorNo": 11,
+        "blockName": "K",
+        "apartmentNo": "0092",
+        "rent": 10
+    },
+    {
+        "apartmentImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcJ8D0xBHezRDHECtKLRea-345-ZU-YQGMaA&s",
+        "floorNo": 12,
+        "blockName": "L",
+        "apartmentNo": "303",
+        "rent": 8
     }
 ]
 

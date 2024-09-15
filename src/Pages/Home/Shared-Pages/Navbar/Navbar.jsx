@@ -3,9 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
+// import useGetRoles from "../../../../hooks/UseGetRoles";
 // import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
 
 const Navbar = () => {
+  // const {role} = useGetRoles();
   const { user, logOut } = useContext(AuthContext);
   
   // const [cart] = UseAgreementCarts();
@@ -20,7 +22,7 @@ const Navbar = () => {
         <NavLink to="/apartment">Apartment</NavLink>
       </li>
       
-      {user && (
+      {/* {user &&  (
         <li>
           <Link to="/dashboard/Payment">
             <button className="btn">
@@ -29,7 +31,7 @@ const Navbar = () => {
             </button>
           </Link>
         </li>
-      )}
+      )} */}
     </>
   );
 

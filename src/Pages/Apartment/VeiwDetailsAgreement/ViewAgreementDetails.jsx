@@ -1,11 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import useViewAgreementCart from "../../../hooks/useViewAgreementCart";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import useGetRoles from "../../../hooks/UseGetRoles";
 
 const ViewAgreementDetails = () => {
+  const {role} = useGetRoles();
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [, refetch] = useViewAgreementCart();
   const axiosSecure = UseAxiosSecure();
@@ -33,8 +39,8 @@ const ViewAgreementDetails = () => {
     console.log(name, email, floor, rent, blockName, apartmentNo, date);
 
     const newAgreementView = {
-      name,
-      email,
+      name: user?.displayName,
+      email: user?.email,
       floor,
       rent: parseInt(rent),
       blockName,
@@ -45,6 +51,7 @@ const ViewAgreementDetails = () => {
 
     axiosSecure.post("/agreementView", newAgreementView).then((res) => {
       if (res.data.insertedId) {
+        navigate('/dashboard/Payment');
         console.log("submit successfully!");
         Swal.fire({
           position: "top-end",
@@ -55,6 +62,7 @@ const ViewAgreementDetails = () => {
         });
         // refetch cart to update
         refetch();
+        console.log({newAgreementView, res});
         event.target.reset();
         // navigate('/');
       }
@@ -181,7 +189,9 @@ const ViewAgreementDetails = () => {
               />
             </div>
             <button
+            disabled = {role === 'admin'}
               type="submit"
+             
               // onClick={() => handleAgreementView(agreementData)}
               className="btn bg-emerald-400 w-full text-2xl"
             >

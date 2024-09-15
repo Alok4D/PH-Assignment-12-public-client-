@@ -26,12 +26,17 @@ const ManageMember = () => {
     <>
       <div className='container mx-auto px-4 sm:px-8'>
         <Helmet>
-          <title>Manage Member</title>
+          <title >Manage Member</title>
+         
         </Helmet>
+        <div>
+          <h2 className='text-center text-3xl text-yellow-500'>Manage Member</h2> 
+          <div className="divider divider-success"></div>
+        </div>
         <div className='py-8'>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-              <table className='min-w-full leading-normal'>
+              <table className='min-w-full leading-normal'> 
                 <thead>
                   <tr>
                     <th scope='col'
@@ -80,57 +85,4 @@ const ManageMember = () => {
   )
 }
 
-export default ManageMember
-
-
-
-
-
-
-
-
-
-
-// const ManageMembers = () => {
-//     return (
-        
-//     <div className="overflow-x-auto">
-//     <table className="min-w-[90%] shadow-md border mx-auto border-gray-100 my-6">
-//         <thead>
-//             <tr className="bg-[#0095FF] text-white">
-//                 <th className="py-4 px-6 text-lg text-left border-b">User Name</th>
-//                 <th className="py-4 px-6 text-lg text-left border-b">User Email</th>
-//                 <th className="py-4 px-6 text-lg text-left border-b">Role</th>
-//                 <th className="py-4 px-6 text-lg border-b text-end">Action</th>
-//             </tr>
-//         </thead>
-//         <tbody>
-//             <tr className="hover:bg-gray-50 border-b transition duration-300">
-//                 <td className="py-4 px-4 flex justify-start">
-//                     <img src="https://source.unsplash.com/64x64/?microphone" alt="table navigate ui" className="h-16 w-16 object-cover bg-gray-300" />
-//                 </td>
-//                 <td className="py-4 px-6 border-b text-xl font-medium">Dual Speaker</td>
-//                 <td className="py-4 px-6 border-b text-lg font-medium">$99.99</td>
-//                 <td className="py-4 px-6 border-b text-end">
-//                     <button className="bg-blue-500 hover:scale-110 scale-100 transition-all duration-100 text-white py-2 px-4 rounded-md">Details</button>
-//                 </td>
-//             </tr>
-//             <tr className="hover:bg-gray-50 border-b transition duration-300">
-//                 <td className="py-4 px-4 flex justify-start">
-//                     <img src="https://source.unsplash.com/64x64/?phone" alt="table navigate ui" className="h-16 w-16 object-cover bg-gray-300" />
-//                 </td>
-//                 <td className="py-4 px-6 border-b text-xl font-medium">Samsung s22</td>
-//                 <td className="py-4 px-6 border-b text-lg font-medium">$599.99</td>
-//                 <td className="py-4 px-6 border-b text-end">
-//                     <button className="bg-blue-500 hover:scale-110 scale-100 transition-all duration-100 text-white py-2 px-4 rounded-md">Details</button>
-//                 </td>
-//             </tr>
-//         </tbody>
-//     </table>
-// </div>
-
-  
-//     );
-// };
-
-// export default ManageMembers;
+export default ManageMember;

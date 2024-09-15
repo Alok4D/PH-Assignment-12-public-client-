@@ -30,8 +30,7 @@ export default function ProfileCard ()  {
                   <p className="text-sm text-gray-400">Role : {role}</p>
               </div>
             
-              {/* bio  */}
-              <p className="pb-2 text-center text-sm text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore error ipsum officiis debitis quo odio?</p>
+            
               {/* social icons  */}
               <div className="flex justify-between gap-4 py-2">
                   {svgArr?.map((svg, idx) => (
