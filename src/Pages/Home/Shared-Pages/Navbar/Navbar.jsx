@@ -1,17 +1,9 @@
-import { FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
-// import useGetRoles from "../../../../hooks/UseGetRoles";
-// import UseAgreementCarts from "../../../../hooks/UseAgreementCarts";
 
 const Navbar = () => {
-  // const {role} = useGetRoles();
   const { user, logOut } = useContext(AuthContext);
-  
-  // const [cart] = UseAgreementCarts();
-  const [viewCart] = useViewAgreementCart();
 
   const links = (
     <>
@@ -21,17 +13,6 @@ const Navbar = () => {
       <li className=" rounded-xl ">
         <NavLink to="/apartment">Apartment</NavLink>
       </li>
-      
-      {/* {user &&  (
-        <li>
-          <Link to="/dashboard/Payment">
-            <button className="btn">
-              <FaShoppingCart className="mr-2"></FaShoppingCart>
-              <div className="badge">+{viewCart.length}</div>
-            </button>
-          </Link>
-        </li>
-      )} */}
     </>
   );
 
@@ -99,7 +80,8 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-300 rounded-box w-52">
+                className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-300 rounded-box w-52"
+              >
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>

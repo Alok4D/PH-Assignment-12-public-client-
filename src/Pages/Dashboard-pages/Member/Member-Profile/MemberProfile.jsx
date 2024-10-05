@@ -6,9 +6,9 @@ import useGetRoles from "../../../../hooks/UseGetRoles";
 const MemberProfile = () => {
 
     const {role} = useGetRoles();
-    console.log(role);
+    // console.log(role);
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className='flex justify-center items-center h-screen'>

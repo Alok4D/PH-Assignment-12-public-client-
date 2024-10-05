@@ -9,6 +9,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import useGetRoles from "../../../hooks/UseGetRoles";
 
 const ViewAgreementDetails = () => {
+
   const {role} = useGetRoles();
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const ViewAgreementDetails = () => {
     const blockName = form.blockName.value;
     const apartmentNo = form.apartmentNo.value;
     const date = form.date.value;
-    console.log(name, email, floor, rent, blockName, apartmentNo, date);
+    // console.log(name, email, floor, rent, blockName, apartmentNo, date);
 
     const newAgreementView = {
       name: user?.displayName,
@@ -52,7 +53,7 @@ const ViewAgreementDetails = () => {
     axiosSecure.post("/agreementView", newAgreementView).then((res) => {
       if (res.data.insertedId) {
         navigate('/dashboard/Payment');
-        console.log("submit successfully!");
+        // console.log("submit successfully!");
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -62,7 +63,7 @@ const ViewAgreementDetails = () => {
         });
         // refetch cart to update
         refetch();
-        console.log({newAgreementView, res});
+        // console.log({newAgreementView, res});
         event.target.reset();
         // navigate('/');
       }
@@ -189,7 +190,7 @@ const ViewAgreementDetails = () => {
               />
             </div>
             <button
-            disabled = {role === 'admin'}
+            disabled = {role === 'Admin'}
               type="submit"
              
               // onClick={() => handleAgreementView(agreementData)}

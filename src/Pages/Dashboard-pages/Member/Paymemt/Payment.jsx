@@ -1,6 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useViewAgreementCart from "../../../../hooks/useViewAgreementCart";
-import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -8,34 +7,13 @@ import toast from "react-hot-toast";
 const Payment = () => {
 
   const [viewCart, refetch] = useViewAgreementCart();
+  // console.log(viewCart)
   const axiosSecure = UseAxiosSecure();
   const totalPrice = viewCart.reduce((total, item) => total + item.rent, 0);
 
 
   const handleViewAgreeDelete = async (id) => {
-    // Swal.fire({
-    //   title: "Are you sure?",
-    //   text: "You won't be able to revert this!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, delete it!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     axiosSecure.delete(`/agreementView${id}`)
-    //     .then((res) => {
-    //       if (res.itemData.deletedCount > 0) {
-    //         refetch();
-    //         Swal.fire({
-    //           title: "Deleted!",
-    //           text: "Your agreement deleted!",
-    //           icon: "success",
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
+
     const response = await axiosSecure.delete(`/agreementView/${id}`)
       if(response.data?.acknowledged){
         toast.success('Agreement Deleted!');
@@ -67,7 +45,9 @@ const Payment = () => {
                 <th>Block Name</th>
                 <th>Date</th>
                 <th>Price</th>
+                <th>Date</th>
                 <th>Action</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -78,6 +58,7 @@ const Payment = () => {
                   <td>{itemData.blockName}</td>
                   <td>{itemData.date}</td>
                   <td>${itemData.rent}</td>
+                  <td>{itemData.date}</td>
 
                   <th>
                     <button

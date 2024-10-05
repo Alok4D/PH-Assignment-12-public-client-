@@ -10,7 +10,7 @@ const MakeAnnouncement = () => {
     e.preventDefault();
     const title = e.target.title.value;
     const description = e.target.description.value;
-    console.log(title, description);
+    // console.log(title, description);
     
     const newAnnouncement = {
       title,
@@ -19,7 +19,7 @@ const MakeAnnouncement = () => {
 
     axiosSecure.post("/announcement", newAnnouncement).then((res) => {
       if (res.data.insertedId) {
-        console.log("admin added announcement!");
+        // console.log("admin added announcement!");
         Swal.fire({
           position: "top-end",
           icon: "success",

@@ -21,7 +21,7 @@ const AgreementRequest = () => {
       return data;
     },
   });
-  console.log(agreementCarts);
+  // console.log(agreementCarts);
 
   // delete items
 

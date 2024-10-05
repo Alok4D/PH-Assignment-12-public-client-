@@ -5,9 +5,9 @@ import { Helmet } from "react-helmet-async";
 
 const Statistics = () => {
   const { role } = useGetRoles();
-  console.log(role);
+  // console.log(role);
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   return (
     <div>
       <Helmet>

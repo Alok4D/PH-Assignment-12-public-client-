@@ -19,7 +19,7 @@ const UserDataRow = ({ user, refetch }) => {
     },
     onSuccess: (data) => {
       refetch()
-      console.log(data);
+      // console.log(data);
       toast.success('User Role Updated Successfully!')
       setIsOpen(false)
     }
@@ -27,7 +27,7 @@ const UserDataRow = ({ user, refetch }) => {
 
   // modal handler
   const modalHandler = async selected => {
-    console.log('user role updated', selected)
+    // console.log('user role updated', selected)
     const user = {
       role: selected,
       status: 'Verified',
@@ -36,7 +36,7 @@ const UserDataRow = ({ user, refetch }) => {
     try{
       await mutateAsync(user)
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message)
     }
 

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
-import { FcAbout, FcNews, FcSettings } from "react-icons/fc";
+import { FcAbout, FcNews } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { TfiAnnouncement } from "react-icons/tfi";
@@ -18,7 +18,6 @@ const Sidebar = () => {
   const location = useLocation();
   const [cart] = UseAgreementCarts();
   const { role } = useGetRoles();
-  const { user, logOut } = useContext(AuthContext);
   const [isActive, setActive] = useState(false);
 
   const handleLogOut = () => {
@@ -39,7 +38,7 @@ const Sidebar = () => {
             <Link to="/">
               <img
                 // className='hidden md:block'
-                src="https://i.ibb.co/4ZXzmq5/logo.png"
+                src="https://template-kit2.evonicmedia.com/layout76/wp-content/uploads/2024/05/logo-1.png"
                 alt="logo"
                 width="100"
                 height="100"
@@ -290,10 +289,8 @@ const Sidebar = () => {
           </NavLink> */}
           <button
             onClick={handleLogOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
-          >
+            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform">
             <GrLogout className="w-5 h-5" />
-
             <span className="mx-4 font-medium">Logout</span>
           </button>
         </div>

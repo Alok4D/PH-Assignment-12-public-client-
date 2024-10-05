@@ -15,7 +15,7 @@ export default function ProfileCard() {
       return data;
     },
   });
-  console.log(stats);
+  // console.log(stats);
 
   const { role } = useGetRoles();
   const { user } = useContext(AuthContext);

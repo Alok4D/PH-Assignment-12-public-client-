@@ -35,7 +35,7 @@ const ApartmentData = ({ data }) => {
       
     }
     if (user && user.email) {
-      if (role === "Member" || role === "admin") {
+      if (role === "Member" || role === "Admin") {
         navigate(`/agreementDetails/${_id}`);
         return;
       }
@@ -52,7 +52,7 @@ const ApartmentData = ({ data }) => {
           agreementReqDate: new Date(),
         };
         axiosSecure.post("/agreementCarts", cartItem).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.insertedId) {
             Swal.fire({
               position: "top-end",

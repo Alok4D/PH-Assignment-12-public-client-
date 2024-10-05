@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     loginUser(email, password)
       .then((result) => {
@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    console.log('this is googleLogin btn', handleGoogleLogin);
+    // console.log('this is googleLogin btn', handleGoogleLogin);
     googleLogin()
     .then(result =>{
       setUser(result.user);
@@ -60,7 +60,7 @@ const Login = () => {
       }
       axiosPublic.post('/users', userInfo)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         Navigate('/');
       })
 
@@ -74,7 +74,7 @@ const Login = () => {
       Navigate(from, { replace: true });
     })
     .catch(error => {
-     console.log(error);
+    //  console.log(error);
       Swal.fire({
         position: "top-end",
         icon: "error",

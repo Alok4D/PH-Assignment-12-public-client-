@@ -16,7 +16,7 @@ const Apartment = () => {
   };
 
   const [apartment, setApartment] = useState([]);
-  console.log(apartment);
+  // console.log(apartment);
   useEffect(() => {
     fetch("https://building-management-server-sigma.vercel.app/apartmentData")
       .then((res) => res.json())

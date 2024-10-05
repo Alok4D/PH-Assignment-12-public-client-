@@ -15,12 +15,15 @@ const CheckOutForm = () => {
     const axiosSecure = UseAxiosSecure();
     const {user} = useContext(AuthContext);
     const [viewCart] = useViewAgreementCart();
+    
     const totalPrice = viewCart.reduce( (total, item) => total + item.rent , 0)
+    const paymentInfo = viewCart.find(cart => cart.email===user.email);
+    console.log(paymentInfo);
 
     useEffect( () => {
         axiosSecure.post('/create-payment-intent', {price: totalPrice})
         .then(res => {
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret)
         })
     }, [axiosSecure, totalPrice])
@@ -43,11 +46,11 @@ const CheckOutForm = () => {
     })
 
     if(error){
-        console.log('Payment error', error);
+        // console.log('Payment error', error);
         setError(error.message);
     }
     else{
-        console.log('payment method', paymentMethod);
+        // console.log('payment method', paymentMethod);
         setError('');
     }
 
@@ -62,12 +65,12 @@ const CheckOutForm = () => {
         }
     })
     if(confirmError){
-        console.log('confirm error');
+        // console.log('confirm error');
     }
     else{
-        console.log('payment intent', paymentIntent)
+        // console.log('payment intent', paymentIntent)
         if(paymentIntent.status === 'succeeded'){
-            console.log('transaction id', paymentIntent.id);
+            // console.log('transaction id', paymentIntent.id);
             setTransactionId(paymentIntent.id);
 
             // now save the payment in the db
@@ -75,12 +78,12 @@ const CheckOutForm = () => {
                 email: user.email,
                 price: totalPrice,
                 transactionId: paymentIntent.id,
-                date: viewCart.date,
+                date: paymentInfo.date,
                 payment: 'paid'
                
             }
           const res = await  axiosSecure.post('/payments', payment);
-          console.log('payment saved', res);
+          // console.log('payment saved', res);
           if(res.data?.insertedId){
             toast.success('Payment Successfully!')
           
