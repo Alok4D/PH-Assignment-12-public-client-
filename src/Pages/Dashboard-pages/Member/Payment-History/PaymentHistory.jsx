@@ -9,7 +9,6 @@ const PaymentHistory = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = UseAxiosSecure();
 
-  // Fetch all payments
   const { data: payments = [] } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
@@ -18,20 +17,19 @@ const PaymentHistory = () => {
     },
   });
 
-  // Filter current user's payments
   const userPayments = payments.filter((p) => p.email === user?.email);
 
-  // Filter payments based on search term (month name or number)
   const filteredPayments = userPayments.filter((p) => {
     if (!searchTerm) return true;
 
     const dateObj = new Date(p.date);
-    const monthNameFull = dateObj.toLocaleString("default", { month: "long" }).toLowerCase(); // e.g., january
-    const monthNameShort = dateObj.toLocaleString("default", { month: "short" }).toLowerCase(); // e.g., jan
-    const monthNumber = (dateObj.getMonth() + 1).toString(); // 1-12
+    if (isNaN(dateObj)) return false;
+
+    const monthNameFull = dateObj.toLocaleString("default", { month: "long" }).toLowerCase();
+    const monthNameShort = dateObj.toLocaleString("default", { month: "short" }).toLowerCase();
+    const monthNumber = (dateObj.getMonth() + 1).toString();
 
     const term = searchTerm.trim().toLowerCase();
-
     return monthNameFull.includes(term) || monthNameShort.includes(term) || monthNumber.includes(term);
   });
 
@@ -41,18 +39,11 @@ const PaymentHistory = () => {
         <title>Dashboard || Payment History</title>
       </Helmet>
 
-      {/* Page header */}
-      <h2 className="text-center text-3xl md:text-4xl font-bold text-yellow-500 mb-2">
-        Payment History
-      </h2>
+      <h2 className="text-center text-3xl md:text-4xl font-bold text-yellow-500 mb-2">Payment History</h2>
       <div className="divider border-t-2 border-yellow-500 w-1/2 mx-auto mb-6"></div>
 
-      {/* Top section: total payments + search */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-        <h3 className="text-2xl md:text-3xl font-semibold">
-          Total Payments: {filteredPayments.length}
-        </h3>
-
+        <h3 className="text-2xl md:text-3xl font-semibold">Total Payments: {filteredPayments.length}</h3>
         <input
           type="text"
           placeholder="Search by month name (Jan) or number (1-12)"
@@ -62,7 +53,6 @@ const PaymentHistory = () => {
         />
       </div>
 
-      {/* Payment table */}
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full text-sm md:text-base">
           <thead>
@@ -86,14 +76,12 @@ const PaymentHistory = () => {
                   <td className={item.payment === "paid" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
                     {item.payment}
                   </td>
-                  <td>{new Date(item.date).toLocaleDateString()}</td>
+                  <td>{new Date(item.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="text-center py-4">
-                  No payments found
-                </td>
+                <td colSpan={6} className="text-center py-4">No payments found</td>
               </tr>
             )}
           </tbody>

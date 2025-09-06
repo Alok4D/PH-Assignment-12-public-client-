@@ -39,7 +39,7 @@ export default function MyProfile() {
         {/* Apartment Info */}
         <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-semibold text-gray-700 dark:text-white mb-2">
-            Apartment Info
+            Apartment Info :
           </h3>
           <div className="grid grid-cols-2 gap-4 text-gray-600 dark:text-gray-300">
             <div>
