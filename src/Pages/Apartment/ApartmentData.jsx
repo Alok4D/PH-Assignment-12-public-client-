@@ -7,6 +7,7 @@ import UseAgreementCarts from "../../hooks/UseAgreementCarts";
 import useGetRoles from "../../hooks/UseGetRoles";
 
 const ApartmentData = ({ data }) => {
+  
   const { role } = useGetRoles();
   const { apartmentImage, floorNo, blockName, apartmentNo, rent, _id } = data;
 
