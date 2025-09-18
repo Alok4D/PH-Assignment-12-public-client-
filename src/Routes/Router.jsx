@@ -22,11 +22,7 @@ import MemberProfile from "../Pages/Dashboard-pages/Member/Member-Profile/Member
 import ViewAgreementDetails from "../Pages/Apartment/VeiwDetailsAgreement/ViewAgreementDetails";
 import Payment from "../Pages/Dashboard-pages/Member/Paymemt/Payment";
 import PayPayment from "../Pages/Dashboard-pages/Member/Paymemt/PayPayment";
-
-
-
-
-
+import ContactForm from "../Components/ContactForm/ContactForm";
 
 
   export const router = createBrowserRouter([
@@ -42,6 +38,10 @@ import PayPayment from "../Pages/Dashboard-pages/Member/Paymemt/PayPayment";
         {
           path: '/apartment',
           element: <Apartment></Apartment>,
+        },
+        {
+          path: '/contact',
+          element: <ContactForm></ContactForm>,
         },
         {
           path: '/agreementDetails/:id',

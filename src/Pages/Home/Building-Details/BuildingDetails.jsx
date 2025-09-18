@@ -52,7 +52,7 @@ const BuildingDetails = () => {
   const [activeContent, setActiveContent] = useState(contentData[0]);
 
   return (
-    <div className="pb-5 bg-[#ffffff]">
+    <div className="pb-5 mx-auto container bg-[#ffffff]">
       {/* Heading Section */}
       <div>
         <div className="container flex flex-col items-center justify-center mx-auto sm:p-10">

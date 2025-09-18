@@ -11,7 +11,7 @@ export const Banner = () => {
     }, [currentSlider]);
 
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex container mx-auto flex-col justify-between">
             <div className="w-full h-72 sm:h-96 md:h-[700px] flex flex-col items-center justify-center gap-5 lg:gap-10 bg-cover bg-center before:absolute before:bg-black/25 before:inset-0 transform duration-1000 ease-linear rounded-lg overflow-hidden"
                 style={{ backgroundImage: `url(${sliders[currentSlider].img})`}}>
                 {/* text container here */}

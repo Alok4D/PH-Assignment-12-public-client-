@@ -2,7 +2,7 @@
 
 const ApartmentsMaps = () => {
     return (
-    <div className="mt-8 mb-8">
+    <div className="mt-8">
             <div className="text-center mb-6">
             <h2 className="text-red-400 text-4xl italic">Apartments Map Location</h2>
             </div>

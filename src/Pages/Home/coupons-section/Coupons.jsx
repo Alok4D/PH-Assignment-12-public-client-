@@ -19,8 +19,8 @@ const CouponSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-100 w-full mx-auto">
+      <div className="container mx-auto px-6">
         {/* Section Heading */}
         <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
           🎁 Exclusive Coupons
