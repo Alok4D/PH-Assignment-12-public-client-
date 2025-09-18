@@ -7,7 +7,7 @@ const CouponSection = () => {
 
   useEffect(() => {
     // Fetch coupons from your backend API
-    fetch("http://localhost:5000/coupons") // Replace with your deployed API URL
+    fetch("https://building-management-server-sigma.vercel.app/coupons") // Replace with your deployed API URL
       .then((res) => res.json())
       .then((data) => setCoupons(data));
   }, []);

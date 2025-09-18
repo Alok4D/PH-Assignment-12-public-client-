@@ -12,7 +12,7 @@ const MemberProfile = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/memberProfile/${user.email}`)
+        .get(`https://building-management-server-sigma.vercel.app/memberProfile/${user.email}`)
         .then((res) => setProfile(res.data))
         .catch((err) => console.error(err));
     }

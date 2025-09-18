@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "building-management-auth",
     "public": "dist",
     "ignore": [
       "firebase.json",

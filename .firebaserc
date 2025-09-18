@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "building-management-auth"
-  }
+  },
+  "targets": {
+    "building-management-auth": {
+      "hosting": {
+        "building-management-auth": [
+          "building-management-auth"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

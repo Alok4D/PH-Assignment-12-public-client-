@@ -8,7 +8,7 @@ const Apartment = () => {
   const apartmentsPerPage = 6;
 
   useEffect(() => {
-    fetch("http://localhost:5000/apartmentData")
+    fetch("https://building-management-server-sigma.vercel.app/apartmentData")
       .then((res) => res.json())
       .then((data) => setApartments(data));
   }, []);
