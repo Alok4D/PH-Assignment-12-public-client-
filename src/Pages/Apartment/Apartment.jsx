@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 const Apartment = () => {
   const [apartments, setApartments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const apartmentsPerPage = 6;
+  const apartmentsPerPage = 12;
 
   useEffect(() => {
     fetch("https://building-management-server-sigma.vercel.app/apartmentData")
@@ -24,52 +24,45 @@ const Apartment = () => {
   const goToNext = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
-  // Responsive page numbers
+  // Responsive page numbers (tailwind hidden/show)
   const getVisiblePages = () => {
-    if (totalPages <= 5)
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-
-    if (window.innerWidth < 640) {
-      // mobile: show 1 current + prev/next
-      return [currentPage];
-    } else if (window.innerWidth < 1024) {
-      // tablet: show 3 pages around current
-      const start = Math.max(currentPage - 1, 1);
-      const end = Math.min(start + 2, totalPages);
-      return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-    } else {
-      // desktop: show all pages
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    // Always show first & last
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
     }
+    return pages;
   };
 
   const visiblePages = getVisiblePages();
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <Helmet>
         <title>Apartment Page</title>
       </Helmet>
 
-      <div className="mt-10 mb-10 w-full  sm:h-auto lg:h-[310px] bg-cover bg-[url('https://images.pexels.com/photos/258160/pexels-photo-258160.jpeg?cs=srgb&dl=pexels-pixabay-258160.jpg&fm=jpg')]">
-        <h2 className="flex justify-center items-center text-center sm:text-[15px] lg:text-[60px] leading-[60px] font-bold text-white sm:pt-0 lg:pt-28">
+      {/* Banner Section */}
+      <div className="mt-10 mb-10 w-full rounded-xl overflow-hidden bg-cover bg-center h-[180px] sm:h-[150px] lg:h-[220px] bg-[url('https://images.pexels.com/photos/258160/pexels-photo-258160.jpeg?cs=srgb&dl=pexels-pixabay-258160.jpg&fm=jpg')]">
+        <h2 className="flex justify-center items-center text-center h-full text-[20px] sm:text-[35px] lg:text-[60px] leading-tight font-bold text-white bg-black/40">
           Our apartments are available
         </h2>
       </div>
 
       {/* Apartment Grid */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-6">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentApartments.map((data) => (
           <ApartmentData key={data._id} data={data} />
         ))}
       </div>
 
-      {/* Pagination Buttons */}
+      {/* Pagination */}
       <div className="flex justify-center mt-8 mb-8 flex-wrap gap-2 items-center">
+        {/* Prev button */}
         <button
           onClick={goToPrev}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded-lg font-medium ${
+          className={`px-4 py-2 rounded-lg font-medium transition ${
             currentPage === 1
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
               : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
@@ -78,11 +71,12 @@ const Apartment = () => {
           Prev
         </button>
 
+        {/* Page numbers */}
         {visiblePages.map((page) => (
           <button
             key={page}
             onClick={() => setCurrentPage(page)}
-            className={`px-4 py-2 rounded-lg font-medium ${
+            className={`hidden sm:inline-block px-4 py-2 rounded-lg font-medium transition ${
               currentPage === page
                 ? "bg-indigo-600 text-white"
                 : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
@@ -92,10 +86,16 @@ const Apartment = () => {
           </button>
         ))}
 
+        {/* Mobile current page only */}
+        <span className="sm:hidden font-medium">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        {/* Next button */}
         <button
           onClick={goToNext}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded-lg font-medium ${
+          className={`px-4 py-2 rounded-lg font-medium transition ${
             currentPage === totalPages
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
               : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"

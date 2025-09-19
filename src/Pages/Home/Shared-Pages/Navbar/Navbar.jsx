@@ -18,6 +18,9 @@ const Navbar = () => {
       <li className=" rounded-xl ">
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
+      <li className=" rounded-xl ">
+        <NavLink to="/faq">FAQ Section</NavLink>
+      </li>
     </>
   );
 

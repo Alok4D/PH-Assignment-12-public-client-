@@ -23,6 +23,7 @@ import ViewAgreementDetails from "../Pages/Apartment/VeiwDetailsAgreement/ViewAg
 import Payment from "../Pages/Dashboard-pages/Member/Paymemt/Payment";
 import PayPayment from "../Pages/Dashboard-pages/Member/Paymemt/PayPayment";
 import ContactForm from "../Components/ContactForm/ContactForm";
+import FAQSection from "../Components/FAQSection/FAQSection";
 
 
   export const router = createBrowserRouter([
@@ -54,6 +55,10 @@ import ContactForm from "../Components/ContactForm/ContactForm";
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/faq',
+          element: <FAQSection/>
         }
       ]
     },

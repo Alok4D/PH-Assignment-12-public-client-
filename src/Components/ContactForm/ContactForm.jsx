@@ -1,6 +1,9 @@
+import ApartmentsMaps from "../../Pages/Home/Apartments-location/ApartmentsMaps";
+
 const ContactForm = () => {
   return (
-    <section className="container mx-auto flex flex-col lg:flex-row items-center justify-between bg-[#0A0D17] rounded-2xl shadow-lg overflow-hidden mt-8 mb-8">
+    <div>
+        <section className="container mx-auto flex flex-col lg:flex-row items-center justify-between bg-[#0A0D17] rounded-2xl shadow-lg overflow-hidden mt-8 mb-8">
       
       {/* Form Area */}
       <form className="w-full lg:w-1/2 p-8 md:p-12">
@@ -53,6 +56,9 @@ const ContactForm = () => {
         />
       </div>
     </section>
+    <ApartmentsMaps/>
+    </div>
+  
   );
 };
 
