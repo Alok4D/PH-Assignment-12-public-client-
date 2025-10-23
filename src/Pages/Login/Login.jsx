@@ -10,7 +10,6 @@
 
 //   const axiosPublic = UseAxiosPublic();
 
-
 //   const {loginUser, googleLogin, setUser} = useContext(AuthContext);
 //   const location = useLocation();
 //   const Navigate = useNavigate();
@@ -188,7 +187,6 @@ import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
-
   const axiosPublic = UseAxiosPublic();
   const { loginUser, googleLogin, setUser } = useContext(AuthContext);
   const location = useLocation();
@@ -261,7 +259,10 @@ const Login = () => {
     if (role === "user") {
       credentials = { email: "buildinguserr@gmail.com", password: "@User143" };
     } else if (role === "member") {
-      credentials = { email: "buildingmember@gmail.com", password: "@Member143" };
+      credentials = {
+        email: "buildingmember@gmail.com",
+        password: "@Member143",
+      };
     } else if (role === "admin") {
       credentials = { email: "buildingadmin@gmail.com", password: "@Admin143" };
     }
@@ -290,7 +291,7 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-24 flex flex-col lg:flex-row items-center justify-center px-6 py-10 bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl shadow-lg">
+    <div className="h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-10 bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl shadow-lg">
       <Helmet>
         <title>Login Page</title>
       </Helmet>
@@ -311,12 +312,15 @@ const Login = () => {
         </h2>
         <p className="text-sm text-center text-gray-600 mb-6">
           Sign in to continue exploring{" "}
-          <span className="font-semibold text-orange-500">Mozzo Bazar</span>
+          <span className="font-semibold text-orange-500"></span>
         </p>
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block mb-1 text-sm font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
@@ -329,7 +333,10 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block mb-1 text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
@@ -366,7 +373,9 @@ const Login = () => {
 
         {/* Demo Login */}
         <div className="mt-8 space-y-3">
-          <p className="text-center text-gray-500 text-sm font-medium">Demo Accounts</p>
+          <p className="text-center text-gray-500 text-sm font-medium">
+            Demo Accounts
+          </p>
           <div className="flex flex-col gap-2">
             <button
               onClick={() => handleDemoLogin("user")}
@@ -404,4 +413,3 @@ const Login = () => {
 };
 
 export default Login;
-
